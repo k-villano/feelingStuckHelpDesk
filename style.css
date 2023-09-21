@@ -1,0 +1,40 @@
+body {
+    background-color: rgb(69, 160, 176);
+}
+
+.ticketCard {
+   border: 2px solid black;
+   margin: 5px;
+   max-width: 800px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.textbox {
+    background-color: transparent;
+    margin-right: 15px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+li {
+    display: block;
+}
+
+.slant {
+    background-color: transparent;
+    margin: 25px;
+    height: 45px;
+    border: 1px solid black;
+    transform: skew(-20deg);
+
+}
+
+.resButtons {
+    margin-right: 25px;
+    align-self: center;
+}
+
+#sendButton {
+    border: 1px solid black;
+}
