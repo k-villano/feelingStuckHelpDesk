@@ -4,7 +4,7 @@ import Ticket from './Ticket.jsx';
 
 const MainContainer = (props) => {
 
-  const [helpClass, setHelpClass] = useState('slant')
+  
 
   const symButtonClickHandler =  async (e) => {
     //send help
@@ -35,8 +35,9 @@ const MainContainer = (props) => {
         method: 'PATCH'
       })
       console.log(res);
-      setHelpClass('slant small');
       props.getMyTickets();
+      props.helpClass[i] = 'slant small'
+      props.setHelpClass([...helpClass])
     } catch (err) {
       console.log(`didn't send help`)
     }
@@ -66,7 +67,7 @@ for (let i = props.tickets.length-1; i >=0;  i--){
       helpButtonClickHandler = {helpButtonClickHandler} 
       symButtonClickHandler = {symButtonClickHandler} 
       deleteClickHandler = {deleteClickHandler} 
-      helpClass = {helpClass}
+      helpClass = {props.helpClass[i]}
 
       />)
 }

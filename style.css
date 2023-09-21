@@ -87,21 +87,31 @@ h1 {
 
 .small {
     animation-name: shrink;
-    animation-duration: 2s;
+    animation-duration: 300ms;
+    animation-fill-mode: forwards;
 
 }
 
 @keyframes shrink {
     from {
-        height: 45px;
+        height: 65px;
+        width: 85px;
+        font-size: default;
 
     }
     to {
         height: 0px;
+        width: 0px;
+        font-size: 0;
+        display: none;
     }
 }
 
 .italics {
     font-style: italic;
 
+}
+
+.nothing {
+    display: none;
 }

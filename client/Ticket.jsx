@@ -4,13 +4,12 @@ const Ticket = (props) => {
     
 
     let currClass1 = ''
-    let currClass2 = 'slant '
+    
 
-    let status = 'still need help';
+    let status = 'still needs help';
     if (props.ticket.helpStatus === true){
         currClass1 += ' italics'
-        currClass2 += ' small'
-        status = 'help sent!';
+        status = 'help sent!!';
     } 
 
     return(
