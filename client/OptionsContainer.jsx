@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const OptionsContainer = () => {
+const OptionsContainer = (props) => {
     const [text, setText] = useState(['', '', ''])
 
     const onChangeHandler = (e) => {
@@ -10,9 +10,11 @@ const OptionsContainer = () => {
         setText([...text])
     }
 
-    const onClickHandler = async () => {
+    const onClickHandler = async (e) => {
+       
         try {
-          const res = fetch('/tickets', {
+            e.preventDefault();
+          const res = await fetch('/tickets', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -23,25 +25,28 @@ const OptionsContainer = () => {
                 message: text[2]
             })
           })
-
+        
+        setText(['', '', '']);
+        //   console.log('should be empty text', text)
+          props.getMyTickets();
         } catch (err) {
-
+           console.log('some error', err)
         }
     }
 
-
+    console.log('this the text', text);
 
 
     return(
         <div>
-            I'm feeling stuck
+            <span className="feelStuck">I'm feeling stuck</span>
             <form >
-                <label htmlFor='who'>your name</label>
-                <input type = 'text' id= {0} name = 'who'  onChange={onChangeHandler} className="textbox" ></input>
+                <label htmlFor='who' className="firstLabel">your name</label>
+                <input type = 'text' id= {0} name = 'who'  onChange={onChangeHandler} className="textbox" value={text[0]}></input>
                 <label htmlFor='what'>whatcha stuck on</label>
-                <input type = 'text' id= {1} name = 'what' onChange={onChangeHandler} className="textbox"></input>
+                <input type = 'text' id= {1} name = 'what' onChange={onChangeHandler} className="textbox" value={text[1]}></input>
                 <label htmlFor='msg'>SOS message?</label>
-                <input type = 'text' id= {2} name = 'msg' onChange={onChangeHandler} className="textbox"></input>
+                <input type = 'text' id= {2} name = 'msg' onChange={onChangeHandler} className="textbox" value={text[2]}></input>
                 <button onClick={onClickHandler} className="textbox" id='sendButton'>send!</button>
             </form>
         </div>

@@ -8,7 +8,6 @@ controller.addTicket = async (req, res, next) => {
     console.log('just the body', body);
   try {
     const ticket = await Ticket.create(body)
-    console.log('IS A TICKET', ticket);
     res.locals.newTicket = ticket;
     return next();
   } catch (err) {
@@ -34,19 +33,50 @@ controller.showTickets = async (req, res, next) => {
       }
 }
 
-controller.grabTicket = async (req, res, next) => {
-    const { name } = req.params;
+controller.grabHelpTicket = async (req, res, next) => {
+    const { id } = req.params;
   try {
-    const ticket = await Ticket.findOneAndUpdate({name: name}, {helpStatus: true})
+    const ticket = await Ticket.findOneAndUpdate({_id: id}, {helpStatus: true})
     console.log(ticket);
     return next();
 
   } catch (err) {
     return next({
-        log: 'ERROR: controller.grabTicket',
+        log: 'ERROR: controller.grabHelpTicket',
         message: err
       })
   }
+};
+
+controller.grabSymTicket = async (req, res, next) => {
+  const { id } = req.params;
+try {
+  const oldTicket = await Ticket.findOne({_id: id})
+  const ticket = await Ticket.findOneAndUpdate({_id: id}, {frowns: `:'(    ${oldTicket.frowns}`})
+  console.log(ticket);
+  return next();
+
+} catch (err) {
+  return next({
+      log: 'ERROR: controller.grabSymTicket',
+      message: err
+    })
 }
+}
+
+controller.deleteTicket = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const ticket = await Ticket.findOneAndDelete({_id: id})
+    console.log(ticket);
+    return next();
+
+  } catch (err) {
+    return next({
+      log: 'ERROR: controller.deleteTicket',
+      message: err
+    })
+  }
+};
 
 module.exports = controller;

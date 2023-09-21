@@ -1,5 +1,6 @@
 body {
     background-color: rgb(69, 160, 176);
+    white-space: pre;
 }
 
 .ticketCard {
@@ -8,33 +9,99 @@ body {
    max-width: 800px;
    display: flex;
    justify-content: space-between;
+  
+  
+}
+
+form {
+    max-width: 800px;
 }
 
 .textbox {
     background-color: transparent;
     margin-right: 15px;
+ 
+ 
     border: none;
     border-bottom: 1px solid black;
+    outline: none;
+  
 }
 
 li {
     display: block;
 }
 
-.slant {
+.slant  {
     background-color: transparent;
     margin: 25px;
     height: 45px;
     border: 1px solid black;
     transform: skew(-20deg);
-
 }
 
+
+
+
 .resButtons {
-    margin-right: 25px;
+    /* margin-left: 50px; */
     align-self: center;
+    position: relative;
+    left: 50px;
 }
 
 #sendButton {
     border: 1px solid black;
+}
+
+.deleteButton {
+    background-color: transparent;
+    max-width: 20px;
+    border: none;
+    border-left: 1px dashed black;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    flex-grow: 1;
+    font-style: italic;
+    padding-top: 5px;
+    padding-left: 1px;
+    cursor: default;
+}
+
+h1 {
+   position: relative;
+   top: -20px;
+}
+
+.feelStuck {
+   
+   position: relative;
+   top: -30px;
+   margin-left: 170px;
+
+}
+
+.firstLabel {
+    margin-left: 8px;
+}
+
+.small {
+    animation-name: shrink;
+    animation-duration: 2s;
+
+}
+
+@keyframes shrink {
+    from {
+        height: 45px;
+
+    }
+    to {
+        height: 0px;
+    }
+}
+
+.italics {
+    font-style: italic;
+
 }

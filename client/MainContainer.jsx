@@ -2,32 +2,77 @@ import React, { useState, useEffect } from "react";
 import Ticket from './Ticket.jsx';
 
 
-const MainContainer = () => {
-  const [tickets, setTickets] = useState([]);
+const MainContainer = (props) => {
 
-  const getMyTickets = async () => {
+  const [helpClass, setHelpClass] = useState('slant')
+
+  const symButtonClickHandler =  async (e) => {
+    //send help
+    console.log('THIS ID', e.target.id)
+    let i = e.target.id 
+
     try {
-    const res = await fetch('/tickets')
-    console.log('A RESQEST WAS MADE')
-    const data = await res.json();
-    setTickets(data);
+      const res = await fetch(`/tickets/sym/${props.tickets[i]._id}`, {
+        method: 'PATCH'
+      })
+      console.log(res);
+      props.getMyTickets();
     } catch (err) {
-       console.log('did not work')
+      console.log(`didn't send help`)
     }
+}
+
+  
+
+
+  const helpButtonClickHandler =  async (e) => {
+    //send help
+    console.log('THIS ID', e.target.id)
+    let i = e.target.id 
+
+    try {
+      const res = await fetch(`/tickets/help/${props.tickets[i]._id}`, {
+        method: 'PATCH'
+      })
+      console.log(res);
+      setHelpClass('slant small');
+      props.getMyTickets();
+    } catch (err) {
+      console.log(`didn't send help`)
+    }
+}
+
+const deleteClickHandler =  async (e) => {
+  let i = e.target.id 
+  console.log('this is iiiii', i)
+  try {
+    const res = await fetch(`/tickets/${props.tickets[i]._id}`, {
+      method: 'DELETE'
+    })
+    console.log(res);
+    props.getMyTickets();
+  } catch (err) {
+    console.log(`did not delete`)
   }
-
-  useEffect(() => {
-    getMyTickets();
-  }, []);
-
+}
 
 
 const ticArr = [];
-for (let i = 0; i < tickets.length; i++){
+for (let i = props.tickets.length-1; i >=0;  i--){
     ticArr.push(<Ticket 
       key={`ticket${i}`}
-      ticket={tickets[i]}/>)
+      ticket={props.tickets[i]} 
+      i={i} 
+      helpButtonClickHandler = {helpButtonClickHandler} 
+      symButtonClickHandler = {symButtonClickHandler} 
+      deleteClickHandler = {deleteClickHandler} 
+      helpClass = {helpClass}
+
+      />)
 }
+
+
+//console.log(ticArr);
 
 return(
   <div>

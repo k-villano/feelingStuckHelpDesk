@@ -22,8 +22,16 @@ app.get('/tickets', controller.showTickets, (req, res) => {
    return res.status(200).json(res.locals.allTickets);
 });
 
-app.patch('/tickets/:name', controller.grabTicket, (req, res) => {
+app.patch('/tickets/help/:id', controller.grabHelpTicket, (req, res) => {
     return res.status(200).send('thanks for helping');
+});
+
+app.patch('/tickets/sym/:id', controller.grabSymTicket, (req, res) => {
+  return res.status(200).send('thanks for the sympathy');
+});
+
+app.delete('/tickets/:id', controller.deleteTicket, (req, res) => {
+  return res.status(200).send('ticket gone!');
 })
 
 // app.get('/style.css', (req, res) => {

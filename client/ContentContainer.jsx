@@ -8,7 +8,6 @@ const ContentContainter = () => {
 
     return(
         <div>
-            <h1>~Feeling Stuck Desk~</h1>
             <OptionsContainer/>
         </div>
     )
