@@ -1,6 +1,7 @@
 body {
     background-color: rgb(69, 160, 176);
     white-space: pre;
+    margin-left: 5vw;
 }
 
 .ticketCard {
